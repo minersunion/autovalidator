@@ -18,6 +18,20 @@ python core/generate_config.py
 > Role generated: roles/role_
 ```
 
+## Ansible
+
+> Make sure you have SSH access to the servers defined in your inventory. You should be able to SSH into them without requiring a password (using SSH keys)
+
+Deploy
+```sh
+ansible-playbook -i inventories/testnet/hosts.yml playbooks/deploy_text-prompting.yml -vvv
+```
+
+Check changes
+```sh
+ansible-playbook -i inventories/testnet/hosts.yml playbooks/deploy_text-prompting.yml -vvv --check
+```
+
 ## KPIs for any subnet owner
 
 - [wip - ddos](docs/ddos.md)
