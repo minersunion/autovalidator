@@ -1,0 +1,28 @@
+# Configuration for {{ project_name }}
+
+[app]
+repo_url = {{ repo_url }}
+deploy_path = {{ deploy_path }}
+python_version = {{ python_version }}
+
+{% if api_keys %}
+[api_keys]
+{% for key, value in api_keys.items() %}
+{{ key }} = {{ value }}
+{% endfor %}
+{% endif %}
+
+[server]
+host = {{ ansible_host }}
+port = {{ server_port | default(8000) }}
+
+[database]
+db_name = {{ db_name | default(project_name ~ '_db') }}
+db_user = {{ db_user | default('user') }}
+db_password = {{ db_password | default('password') }}
+db_host = {{ db_host | default('localhost') }}
+db_port = {{ db_port | default(5432) }}
+
+[logging]
+log_level = {{ log_level | default('INFO') }}
+log_file = {{ log_file | default('/var/log/' ~ project_name ~ '.log') }}

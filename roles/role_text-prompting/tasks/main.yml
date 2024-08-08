@@ -1,0 +1,22 @@
+---
+- name: Clone the repository
+  git:
+    repo: "{{ repo_url }}"
+    dest: "{{ deploy_path }}"
+    version: "main"
+    update: yes
+
+- name: Create Python virtual environment
+  command: python{{ python_version }} -m venv {{ deploy_path }}/venv
+
+- name: Install dependencies
+  pip:
+    requirements: "{{ deploy_path }}/requirements.txt"
+    virtualenv: "{{ deploy_path }}/venv"
+
+- name: Apply configuration template
+  template:
+    src: config_template.j2
+    dest: /etc/{project_name}/config.conf
+  notify:
+    - Restart {project_name} service

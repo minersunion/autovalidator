@@ -1,0 +1,7 @@
+---
+- name: Deploy text-prompting
+  hosts: text-prompting
+  vars_files:
+    - ../inventories/dev/group_vars/text-prompting.yml
+  roles:
+    - role_text-prompting
