@@ -1,2 +1,2 @@
-black==24.8.0
+black==26.5.1
 pre-commit==3.8.0
